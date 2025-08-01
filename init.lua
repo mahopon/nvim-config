@@ -18,6 +18,8 @@ vim.o.termguicolors = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
+vim.opt.wrap = true
+vim.o.number = true
 
 -- Keybindings
 vim.api.nvim_set_keymap('n', 'j', 'k', { noremap = true, silent = true })
@@ -25,6 +27,8 @@ vim.api.nvim_set_keymap('n', 'k', 'j', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('v', 'j', 'k', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', 'k', 'j', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<Esc>', ':nohlsearch<CR>', { noremap = true, silent = true } )
 -- 3. Setup nvim-cmp (autocomplete)
 local cmp = require'cmp'
 cmp.setup({
@@ -78,16 +82,17 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.java",
+  pattern = { "*.java", "*.py" },
   callback = function()
-    print("Organizing imports before save...")
-    -- rest of code here
+      vim.lsp.buf.format({ async = false })
+      print("Organizing imports before save...")
   end,
 })
 
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
+  underline = true,
   update_in_insert = false,
   severity_sort = true,
 })
