@@ -73,6 +73,7 @@ end
 require('jsts_setup')
 require('py_setup')
 require('go_setup')
+require('clang_setup')
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "java",
