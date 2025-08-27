@@ -20,6 +20,9 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.opt.wrap = true
 vim.o.number = true
+vim.o.encoding = "utf-8"
+vim.o.fileencoding = "utf-8"
+vim.bo.bomb = false
 
 -- Keybindings
 vim.api.nvim_set_keymap('n', 'j', 'k', { noremap = true, silent = true })
