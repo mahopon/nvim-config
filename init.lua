@@ -25,13 +25,21 @@ vim.o.fileencoding = "utf-8"
 vim.bo.bomb = false
 
 -- Keybindings
-vim.api.nvim_set_keymap('n', 'j', 'k', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'k', 'j', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('v', 'j', 'k', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', 'k', 'j', { noremap = true, silent = true })
+-- Normal mode: swap j and k
+vim.keymap.set("n", "j", "k", { silent = true })
+vim.keymap.set("n", "k", "j", { silent = true })
 
-vim.api.nvim_set_keymap('n', '<Esc>', ':nohlsearch<CR>', { noremap = true, silent = true } )
+-- Visual mode: swap j and k
+vim.keymap.set("v", "j", "k", { silent = true })
+vim.keymap.set("v", "k", "j", { silent = true })
+
+-- Normal mode: clear search highlighting on Escape
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true })
+
+-- Insert mode: Ctrl+Backspace deletes previous word
+vim.keymap.set("i", "<C-h>", "<C-w>", { silent = true })
+
 -- 3. Setup nvim-cmp (autocomplete)
 local cmp = require'cmp'
 cmp.setup({
