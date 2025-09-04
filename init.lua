@@ -23,6 +23,7 @@ vim.o.number = true
 vim.o.encoding = "utf-8"
 vim.o.fileencoding = "utf-8"
 vim.bo.bomb = false
+vim.g.mapleader = " "
 
 -- Keybindings
 
@@ -39,6 +40,10 @@ vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { silent = true })
 
 -- Insert mode: Ctrl+Backspace deletes previous word
 vim.keymap.set("i", "<C-h>", "<C-w>", { silent = true })
+
+-- Normal mode: space+r+n refactor renames
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
+
 
 -- 3. Setup nvim-cmp (autocomplete)
 local cmp = require'cmp'
@@ -80,11 +85,12 @@ local on_attach = function(client, bufnr)
 end
 
 
--- LSP files
+-- LSP files & imports
 require('jsts_setup')
 require('py_setup')
 require('go_setup')
 require('clang_setup')
+require('lsp_rename')
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "java",
