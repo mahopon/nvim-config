@@ -2,15 +2,21 @@
 
 -- 1. Bootstrap packer.nvim plugin manager (if you don't have it)
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({
-    'git', 'clone', '--depth', '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path
-  })
-  vim.cmd('packadd packer.nvim')
+--local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+--if fn.empty(fn.glob(install_path)) > 0 then
+--  fn.system({
+--    'git', 'clone', '--depth', '1',
+--    'https://github.com/wbthomason/packer.nvim',
+--    install_path
+--  })
+--  vim.cmd('packadd packer.nvim')
+--end
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  print("Lazy.nvim is not installed!")
 end
+vim.opt.rtp:prepend(lazypath)
 
 -- Plugins setup & Vim settings
 require("plugins")
@@ -95,7 +101,7 @@ require('lsp_rename')
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "java",
   callback = function()
-    require("java_setup")
+    require("java_setup2")
   end,
 })
 
