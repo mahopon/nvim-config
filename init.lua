@@ -113,6 +113,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
+-- Open Neo-tree automatically on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Open in the current tab
+    require("neo-tree.command").execute({ source = "filesystem", position = "left", reveal = true })
+  end
+})
+
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
