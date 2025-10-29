@@ -98,6 +98,7 @@ require('go_setup')
 require('clang_setup')
 require('lsp_rename')
 require('solidity')
+require('neo_tree')
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "java",
