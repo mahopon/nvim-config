@@ -2,9 +2,11 @@ return {
   'hrsh7th/nvim-cmp',
   config = function()
     local cmp = require("cmp")
+
     cmp.setup({
       sources = {
-        { name = "nvim_lsp" }
+        { name = "nvim_lsp" },
+        { name = 'buffer' },
       },
       mapping = cmp.mapping.preset.insert({
         -- Navigate between completion items

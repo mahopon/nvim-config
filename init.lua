@@ -19,12 +19,33 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 
     if vim.treesitter.language.add(lang) then
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local on_attach = function(_,bufnr)
+          return vim.lsp.get_clients { bufnr = bufnr }
+      end
+      vim.lsp.config[lang] = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
       vim.treesitter.start(args.buf, lang)
       -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       -- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
       -- vim.wo[0][0].foldmethod = "expr"
     end
   end,
+})
+
+vim.diagnostic.config({
+  -- virtual_text = {
+  --   prefix = '●', -- Or '■', '▎', 'x'
+  --   spacing = 4,
+  -- },
+  virtual_text = false,
+  virtual_lines = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
 })
 
 
@@ -52,3 +73,4 @@ vim.opt.tabstop = 4        -- Number of spaces a tab character represents
 vim.opt.softtabstop = 4    -- Number of spaces the tab key inserts
 vim.opt.wrap = true
 vim.opt.linebreak = true
+vim.opt.number = true
