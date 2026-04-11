@@ -74,3 +74,10 @@ vim.opt.softtabstop = 4    -- Number of spaces the tab key inserts
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.number = true
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
