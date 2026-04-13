@@ -40,8 +40,13 @@ vim.diagnostic.config({
   --   prefix = '●', -- Or '■', '▎', 'x'
   --   spacing = 4,
   -- },
-  virtual_text = false,
-  virtual_lines = true,
+  virtual_text = {
+    format = function(d)
+      local msg = d.message:gsub("\n", " ")
+      return (#msg > 60) and (msg:sub(1, 60) .. "…") or msg
+    end,
+  },
+  -- virtual_lines = true,
   signs = true,
   underline = true,
   update_in_insert = false,
@@ -81,3 +86,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     require("conform").format({ bufnr = args.buf })
   end,
 })
+
+vim.keymap.set("n", "<leader>n", vim.diagnostic.open_float)
