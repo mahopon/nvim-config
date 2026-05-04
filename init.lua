@@ -72,6 +72,9 @@ vim.keymap.set( "n", "<leader>rI", ":Refactor inline_func")
 vim.keymap.set("n", "<leader>rb", ":Refactor extract_block")
 vim.keymap.set("n", "<leader>rbf", ":Refactor extract_block_to_file")
 
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+
 vim.opt.expandtab = true   -- Use spaces instead of tabs
 vim.opt.shiftwidth = 4     -- Number of spaces for each indentation level
 vim.opt.tabstop = 4        -- Number of spaces a tab character represents
