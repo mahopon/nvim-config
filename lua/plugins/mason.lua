@@ -32,7 +32,12 @@ return {
                         },
                     },
                 }
-
+                vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+                  pattern = { "*.tf", "*.tfvars" },
+                  callback = function()
+                    vim.bo.filetype = "terraform"
+                  end,
+                })
                 vim.filetype.add({
                     pattern = {
                         -- playbooks
@@ -43,6 +48,10 @@ return {
                         [".*/roles/.*/handlers/.*%.ya?ml"] = "yaml.ansible",
                         [".*/roles/.*/defaults/.*%.ya?ml"] = "yaml.ansible",
                         [".*/roles/.*/vars/.*%.ya?ml"]     = "yaml.ansible",
+                        [".*/roles/.*/meta/.*%.ya?ml"]     = "yaml.ansible",
+                        [".*/roles/.*/templates/.*%.ya?ml"]     = "yaml.ansible",
+                        [".*/roles/.*/tests/.*%.ya?ml"]     = "yaml.ansible",
+                        [".*/roles/.*/molecule/.*%.ya?ml"]     = "yaml.ansible",
                     },
                 })
             end,
