@@ -60,7 +60,8 @@ vim.opt.tabstop = 4        -- Number of spaces a tab character represents
 vim.opt.softtabstop = 4    -- Number of spaces the tab key inserts
 vim.opt.wrap = true
 vim.opt.linebreak = true
-vim.opt.number = true
+vim.opt.number = true          -- Absolute line numbers
+vim.opt.relativenumber = false -- Keep them absolute (not relative)
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
