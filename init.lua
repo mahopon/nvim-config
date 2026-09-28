@@ -1,6 +1,7 @@
 require("config.lazy")
 require("binds")
-vim.cmd[[colorscheme tokyonight-night]]
+vim.cmd[[colorscheme material]]
+vim.g.material_style = "darker"
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "*" },
   callback = function(args)
