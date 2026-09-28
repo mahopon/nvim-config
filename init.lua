@@ -73,3 +73,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 
 vim.keymap.set("n", "<leader>n", vim.diagnostic.open_float)
+vim.keymap.set("i", "<C-s>", "<C-o>:w<CR>", { desc = "Save file" })
