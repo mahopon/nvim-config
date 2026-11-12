@@ -14,8 +14,13 @@ return {
       close_if_last_window = false,
       window = {
         position = "left",
-        width = 30,
+        width = auto,
       },
+      filesystem = {
+          follow_current_file = {
+              enabled = true,
+          }
+      }
     },
 
     config = function(_, opts)

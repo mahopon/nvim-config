@@ -21,7 +21,8 @@ return -- lazy.nvim
         lsp_doc_border = false, -- add a border to hover docs and signature help
       }
   },
-  config = function()
+  config = function(_, opts)
+    require("noice").setup(opts)
     require("notify").setup({
       background_colour = "#000000",
     })

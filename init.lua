@@ -72,3 +72,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 
+vim.api.nvim_set_hl(0, "LineNr", {
+    fg = "#808080",
+})
+
+vim.api.nvim_set_hl(0, "CursorLineNr", {
+    fg = "#FFFFFF",
+    bold = true,
+})
