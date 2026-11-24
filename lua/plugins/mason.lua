@@ -27,7 +27,6 @@ return {
             "emmet_language_server", -- emmet-language-server
             "gopls",
             "html",                  -- html-lsp
-            "jdtls",
             "lua_ls",                -- lua-language-server
             "pylsp",                 -- python-lsp-server
             "ruff",
@@ -40,6 +39,7 @@ return {
             exclude = {
                 "ts_ls", -- using vtsls instead
                 "pylsp", -- using basedpyright instead
+                "jdtls", -- using IntelliJ instead
             },
         },
     },
