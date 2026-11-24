@@ -3,6 +3,12 @@ return {
   config = function()
     local cmp = require("cmp")
 
+    -- Advertise cmp's capabilities to every LSP client, including the ones
+    -- enabled later from mason.lua.
+    vim.lsp.config("*", {
+      capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    })
+
     cmp.setup({
       sources = {
         { name = "nvim_lsp" },

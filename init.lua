@@ -20,14 +20,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 
     if vim.treesitter.language.add(lang) then
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      local on_attach = function(_,bufnr)
-          return vim.lsp.get_clients { bufnr = bufnr }
-      end
-      vim.lsp.config[lang] = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-      }
       vim.treesitter.start(args.buf, lang)
       -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       -- vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
