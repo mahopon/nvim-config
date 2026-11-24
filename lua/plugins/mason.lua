@@ -67,11 +67,16 @@ return {
             },
         })
 
-        -- Enable configurations
-        vim.lsp.enable({
-            "basedpyright",
-            "clangd",
-            "ansiblels",
-        })
+        -- Enable every LSP server installed through Mason, except servers that
+        -- duplicate one we already prefer.
+        local excluded = {
+            ts_ls = true, -- using vtsls instead
+            pylsp = true, -- using basedpyright instead
+        }
+
+        local servers = require("mason-lspconfig").get_installed_servers()
+        vim.lsp.enable(vim.tbl_filter(function(name)
+            return not excluded[name]
+        end, servers))
     end,
 }
