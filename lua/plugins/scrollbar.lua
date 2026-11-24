@@ -7,8 +7,8 @@ return {
         marks = { numbers = true },
     },
     scrollbar = {
-        preset = "zed",
-        autohide = true,
+        preset = "vscode",
+        autohide = false,
     }
     },
 }
