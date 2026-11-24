@@ -4,14 +4,49 @@ return {
     dependencies = {
         {
             "mason-org/mason.nvim",
-            opts = {},
+            opts = {
+                -- Tools (not LSP servers) to always install.
+                ensure_installed = {
+                    "ansible-lint",
+                    "black",
+                    "htmlhint",
+                },
+            },
         },
         {
             "neovim/nvim-lspconfig",
         },
     },
 
-    config = function()
+    opts = {
+        -- LSP servers to always install, by lspconfig/server name.
+        ensure_installed = {
+            "ansiblels",             -- ansible-language-server
+            "basedpyright",
+            "clangd",
+            "emmet_language_server", -- emmet-language-server
+            "gopls",
+            "html",                  -- html-lsp
+            "jdtls",
+            "lua_ls",                -- lua-language-server
+            "pylsp",                 -- python-lsp-server
+            "ruff",
+            "terraformls",           -- terraform-ls
+            "vtsls",
+        },
+
+        -- Enable every installed server, except ones we intentionally skip.
+        automatic_enable = {
+            exclude = {
+                "ts_ls", -- using vtsls instead
+                "pylsp", -- using basedpyright instead
+            },
+        },
+    },
+
+    config = function(_, opts)
+        require("mason-lspconfig").setup(opts)
+
         -- BasedPyright
         vim.lsp.config("basedpyright", {
             settings = {
@@ -67,16 +102,7 @@ return {
             },
         })
 
-        -- Enable every LSP server installed through Mason, except servers that
-        -- duplicate one we already prefer.
-        local excluded = {
-            ts_ls = true, -- using vtsls instead
-            pylsp = true, -- using basedpyright instead
-        }
-
-        local servers = require("mason-lspconfig").get_installed_servers()
-        vim.lsp.enable(vim.tbl_filter(function(name)
-            return not excluded[name]
-        end, servers))
+        -- Servers are enabled automatically by mason-lspconfig; see
+        -- `automatic_enable.exclude` above.
     end,
 }
