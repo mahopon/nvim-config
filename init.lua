@@ -80,3 +80,4 @@ vim.api.nvim_set_hl(0, "CursorLineNr", {
     fg = "#FFFFFF",
     bold = true,
 })
+
