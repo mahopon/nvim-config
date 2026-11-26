@@ -25,6 +25,12 @@ return {
 
     config = function(_, opts)
       require("neo-tree").setup(opts)
+      filesystem = {
+        use_libuv_file_watcher = true, -- Auto-refresh when files change externally
+        follow_current_file = {
+          enabled = true, -- Auto-focus the active file in the tree
+        },
+      }
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "neo-tree",
         callback = function()

@@ -54,6 +54,7 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.number = true          -- Absolute line numbers
 vim.opt.relativenumber = false -- Keep them absolute (not relative)
+vim.opt.autoread = true
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
