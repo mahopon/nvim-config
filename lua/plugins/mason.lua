@@ -32,7 +32,7 @@ return {
             "ruff",
             "terraformls",           -- terraform-ls
             "vtsls",
-            "css-lsp",
+            "cssls",
         },
 
         -- Enable every installed server, except ones we intentionally skip.
